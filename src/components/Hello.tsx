@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function Hello() {
+const Hello = () => {
   return <h1>Hello, world!</h1>;
-}
+};
+
+export default Hello;
