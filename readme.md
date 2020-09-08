@@ -8,3 +8,5 @@
 ## styles
 
 ## graphql setup
+
+github api docs link -> https://docs.github.com/en/graphql
