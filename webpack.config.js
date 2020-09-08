@@ -29,5 +29,5 @@ module.exports = {
     // Enable webpack find ts and tsx files without an extension
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
-  plugins: [new HtmlWebpackPlugin()],
+  // plugins: [new HtmlWebpackPlugin()],
 };
