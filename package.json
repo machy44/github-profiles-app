@@ -1,0 +1,32 @@
+{
+  "name": "github-profiles-app",
+  "version": "1.0.0",
+  "description": "build ui for github profiles",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "machy",
+  "license": "ISC",
+  "keywords": [
+    "react",
+    "typescript",
+    "webpack"
+  ],
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack": "^4.41.22",
+    "prettier": "^2.1.1",
+    "source-map-loader": "^1.1.0",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
