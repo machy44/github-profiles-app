@@ -1,14 +1,14 @@
 import React from 'react';
 import { Flex } from './Layout';
-import styled from '../theme/theme';
+import styled, { ThemeProps } from '../theme/theme';
 
 interface HelloProps {
   text: string;
 }
 
-const Title = styled.h1((props: any) => {
+const Title = styled.h1(({ theme }: ThemeProps) => {
   return {
-    color: props.theme.colors.primary,
+    color: theme.colors.primary,
   };
 });
 

@@ -4,7 +4,9 @@
   - https://dev.to/jacopobonta/react-typescript-webpack-3c6l
   - https://medium.com/swlh/2020-settings-of-react-typescript-project-with-webpack-and-babel-403c92feaa06 - ts and babel together
 - setup prettier https://glebbahmutov.com/blog/configure-prettier-in-vscode/
-- add css files loader to webpack - https://chriscourses.com/blog/loading-fonts-webpack
+- add css files loader to webpack
+  - https://chriscourses.com/blog/loading-fonts-webpack
+  - https://webpack.js.org/guides/asset-management/
 
 ## styles
 

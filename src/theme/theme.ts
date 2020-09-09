@@ -9,6 +9,8 @@ type Theme = {
   };
 };
 
+export type ThemeProps<T = {}> = T & { theme: Theme };
+
 export const theme: Theme = {
   colors: {
     primary: 'red',
