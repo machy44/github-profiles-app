@@ -1,2 +1,8 @@
-node_modules
-dist
+# dependencies
+/node_modules
+
+# production
+/build
+
+# IDE - I am using vscode
+.vscode
