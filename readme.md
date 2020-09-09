@@ -10,3 +10,7 @@
 ## graphql setup
 
 github api docs link -> https://docs.github.com/en/graphql
+
+### `yarn start:dev`
+
+will start development server on [http://localhost:8080](http://localhost:8080)
