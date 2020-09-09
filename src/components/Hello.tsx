@@ -6,8 +6,10 @@ interface HelloProps {
   text: string;
 }
 
-const Title = styled.h1({
-  color: 'red',
+const Title = styled.h1((props: any) => {
+  return {
+    color: props.theme.colors.primary,
+  };
 });
 
 const Hello: React.FC<HelloProps> = ({ text }) => {

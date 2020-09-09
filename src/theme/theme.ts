@@ -3,10 +3,17 @@
 import styled, { CreateStyled } from '@emotion/styled';
 
 type Theme = {
-  color: {
+  colors: {
     primary: string;
     background: string;
   };
+};
+
+export const theme: Theme = {
+  colors: {
+    primary: 'red',
+    background: 'black',
+  },
 };
 
 export default styled as CreateStyled<Theme>;
