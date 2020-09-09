@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '../theme/theme';
 import { space, flexbox, grid, layout, border, color, position } from 'styled-system';
 
 export const Box = styled.div(space, color, flexbox, layout, border, position);
