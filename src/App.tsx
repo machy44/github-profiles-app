@@ -1,12 +1,15 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
-import Hello from './components/Hello';
+import { Hello, Button } from './components/index';
 import { theme } from './theme/theme';
+
+import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Hello text="pero" />
+      <Button>click me</Button>
     </ThemeProvider>
   );
 };
