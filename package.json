@@ -17,6 +17,8 @@
     "webpack"
   ],
   "dependencies": {
+    "@apollo/client": "^3.1.5",
+    "graphql": "^15.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "semantic-ui-css": "^2.4.1",
@@ -38,6 +40,7 @@
     "babel-loader": "^8.1.0",
     "core-js": "^3.6.5",
     "css-loader": "^4.3.0",
+    "dotenv-webpack": "^2.0.0",
     "emotion-theming": "^10.0.27",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",

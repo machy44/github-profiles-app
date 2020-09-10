@@ -10,6 +10,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Hello text="pero" />
       <Button>click me</Button>
+      <span>{JSON.stringify(process.env.GITHUB_AUTH_TOKEN)}</span>
     </ThemeProvider>
   );
 };

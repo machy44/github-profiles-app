@@ -6,3 +6,6 @@
 
 # IDE - I am using vscode
 .vscode
+
+# environment variables
+.env

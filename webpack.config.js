@@ -1,5 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv-webpack');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // const isProduction = typeof NODE_ENV !== 'undefined' && NODE_ENV === 'production';
 // const mode = isProduction ? 'production' : 'development';
@@ -50,5 +51,6 @@ module.exports = {
     // Enable webpack find ts and tsx files without an extension
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
+  plugins: [new dotenv()],
   // plugins: [new HtmlWebpackPlugin()],
 };
