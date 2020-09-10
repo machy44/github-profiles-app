@@ -1,17 +1,19 @@
 import React from 'react';
-import { ThemeProvider } from 'emotion-theming';
+import { useQuery } from '@apollo/client';
+import { CURRENT_USER } from './api/queries';
 import { Hello, Button } from './components/index';
-import { theme } from './theme/theme';
 
 import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
+  const { loading, data } = useQuery(CURRENT_USER);
+  if (loading) return <div>loading....</div>;
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Hello text="pero" />
       <Button>click me</Button>
-      <span>{JSON.stringify(process.env.GITHUB_AUTH_TOKEN)}</span>
-    </ThemeProvider>
+      <span>{JSON.stringify(data)}</span>
+    </>
   );
 };
 

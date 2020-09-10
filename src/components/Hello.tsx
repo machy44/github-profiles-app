@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flex } from './Layout';
-import styled, { ThemeProps } from '../theme/theme';
+import styled from '@emotion/styled';
+import { ThemeProps } from '../theme/theme';
 
 interface HelloProps {
   text: string;
