@@ -1,6 +1,6 @@
 import { Theme as StyledTheme } from 'styled-system';
 
-type Theme = {
+export type Theme = {
   colors: {
     primary: string;
     background: string;
