@@ -1,10 +1,6 @@
 import React from 'react';
-import { Button as SButton } from 'semantic-ui-react';
+import { Button as SButton, ButtonProps as SButtonProps } from 'semantic-ui-react';
 
-interface ButtonProps {
-  children: React.ReactNode;
-}
+export const PrimaryButton: React.FC<SButtonProps> = (props) => <SButton {...props} color="blue" inverted />;
 
-const Button: React.FC<ButtonProps> = ({ children }) => <SButton>{children}</SButton>;
-
-export default Button;
+export const SecondaryButton: React.FC<SButtonProps> = (props) => <SButton {...props} color="pink" inverted />;
