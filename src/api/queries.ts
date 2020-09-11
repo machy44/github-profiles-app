@@ -16,8 +16,8 @@ export const CURRENT_USER = gql`
 `;
 
 export const GET_ACC_REPOSITORIES = gql`
-  query($number_of_repos: Int!) {
-    viewer {
+  query($number_of_repos: Int!, $username: String!) {
+    user(login: $username) {
       repositories(last: $number_of_repos) {
         nodes {
           name

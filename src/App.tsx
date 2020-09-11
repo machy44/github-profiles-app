@@ -11,13 +11,14 @@ import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
-  // const { loading: loadingRepository, data: repositoriesData } = useQuery(GET_ACC_REPOSITORIES, {
-  //   variables: {
-  //     number_of_repos: 5,
-  //   },
-  // });
-
   const [account, setAccount] = useState('');
+
+  const { loading: loadingRepository, data: repositoriesData } = useQuery(GET_ACC_REPOSITORIES, {
+    variables: {
+      number_of_repos: 5,
+      username: account,
+    },
+  });
 
   const { loading: loadingAccount, data: accountData } = useQuery(GET_ACCOUNT, {
     variables: {
@@ -31,7 +32,7 @@ const App = () => {
     <>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme}>
-        <Loader active={loadingAccount} />
+        <Loader active={loadingAccount || loadingRepository} />
         <Layout.Flex>
           <Text color="white" fontFamily="inherit">
             Github profiles app
@@ -39,7 +40,7 @@ const App = () => {
           <SearchAccount submitAccount={setAccount} />
           {/* <span>{JSON.stringify(userData)}</span> */}
           <Profile profileData={accountData} />
-          {/* <Repositories data={repositoriesData} /> */}
+          <Repositories data={repositoriesData} />
         </Layout.Flex>
       </ThemeProvider>
     </>
