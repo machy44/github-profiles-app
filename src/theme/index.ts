@@ -1,6 +1,8 @@
 import { css } from '@emotion/core';
 import { Theme as StyledTheme } from 'styled-system';
 
+export { Text } from './typography';
+
 export const GlobalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
   body {
@@ -40,4 +42,5 @@ export const theme: Theme = {
     medium: 8,
     large: 16,
   },
+  fontSizes: [12, 14, 16, 20],
 };

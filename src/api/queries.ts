@@ -6,7 +6,6 @@ export interface User {
 }
 
 // interface Viewer
-
 export const CURRENT_USER = gql`
   {
     viewer {
@@ -15,3 +14,9 @@ export const CURRENT_USER = gql`
     }
   }
 `;
+
+export const GET_REPOSITORIES = gql`
+
+`
+
+export GET_USER_REPOSITORIES
