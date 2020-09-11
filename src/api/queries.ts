@@ -15,8 +15,18 @@ export const CURRENT_USER = gql`
   }
 `;
 
-export const GET_REPOSITORIES = gql`
+export const GET_ACC_REPOSITORIES = gql`
+  query($number_of_repos: Int!) {
+    viewer {
+      repositories(last: $number_of_repos) {
+        nodes {
+          name
+          url
+          description
+        }
+      }
+    }
+  }
+`;
 
-`
-
-export GET_USER_REPOSITORIES
+// export const GET_PROFILE = gql``;

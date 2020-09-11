@@ -1,12 +1,7 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { PrimaryButton, Layout, SearchInput } from '../common';
 
 const { Flex, Spacer } = Layout;
-
-// cosnt RepositoryList = (repositories) => {
-//   return repositories.map(repository => )
-// }
 
 const SearchAccount = () => {
   return (

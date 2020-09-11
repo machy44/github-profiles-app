@@ -1,16 +1,23 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { ThemeProvider } from 'emotion-theming';
-import { CURRENT_USER, User } from './api/queries';
+import { CURRENT_USER, User, GET_ACC_REPOSITORIES } from './api/queries';
 import { Layout } from './common';
 import { Global } from '@emotion/core';
-import { SearchAccount, Profile } from './components';
+import { SearchAccount, Profile, Repositories } from './components';
 import { theme, GlobalStyles, Text } from './theme';
 
 import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
-  const { loading, data } = useQuery<User>(CURRENT_USER);
+  const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
+  const { loading: loadingRepository, data: repositoriesData } = useQuery(GET_ACC_REPOSITORIES, {
+    variables: {
+      number_of_repos: 5,
+    },
+  });
+
+  if (loadingUser || loadingRepository) return <div>Loading</div>;
   return (
     <>
       <Global styles={GlobalStyles} />
@@ -20,7 +27,9 @@ const App = () => {
             Github profiles app
           </Text>
           <SearchAccount />
-          <Profile />
+          <span>{JSON.stringify(userData)}</span>
+          {/* <Profile /> */}
+          <Repositories data={repositoriesData} />
         </Layout.Flex>
       </ThemeProvider>
     </>
