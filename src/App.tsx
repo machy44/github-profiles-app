@@ -2,20 +2,25 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { ThemeProvider } from 'emotion-theming';
 import { CURRENT_USER, User } from './api/queries';
-import { Loader, Layout } from './common';
-import { theme } from './theme';
+import { Layout } from './common';
+import { Global } from '@emotion/core';
+import Repository from './components/Repository';
+import { theme, GlobalStyles } from './theme';
 
 import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
   const { loading, data } = useQuery<User>(CURRENT_USER);
   return (
-    <ThemeProvider theme={theme}>
-      <Layout.Box>
-        <Loader active={loading} />
-        <span>{JSON.stringify(data)}</span>
-      </Layout.Box>
-    </ThemeProvider>
+    <>
+      <Global styles={GlobalStyles} />
+      <ThemeProvider theme={theme}>
+        <Layout.Flex>
+          <Repository />
+          {/* <Profile /> */}
+        </Layout.Flex>
+      </ThemeProvider>
+    </>
   );
 };
 

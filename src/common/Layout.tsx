@@ -8,3 +8,5 @@ export const Flex = styled(Box)({
 });
 
 export const Grid = styled.div({ display: 'grid' }, space, grid);
+
+export const Spacer = styled.div(space);
