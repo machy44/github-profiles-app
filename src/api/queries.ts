@@ -29,4 +29,13 @@ export const GET_ACC_REPOSITORIES = gql`
   }
 `;
 
-// export const GET_PROFILE = gql``;
+export const GET_ACCOUNT = gql`
+  query($username: String!) {
+    user(login: $username) {
+      name
+      avatarUrl
+      email
+      url
+    }
+  }
+`;
