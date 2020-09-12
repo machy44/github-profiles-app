@@ -4,11 +4,9 @@ import { ThemeProvider } from 'emotion-theming';
 import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
 import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from './api/types';
 import { sortByName } from './utils';
-import { Loader, SecondaryButton } from './common';
+import { Loader } from './common';
 import { Layout } from './theme';
 import { Global } from '@emotion/core';
-import { Container } from 'semantic-ui-react';
-import { Item, Card, Icon } from 'semantic-ui-react';
 import { SearchAccount, Profile, Repositories } from './components';
 import { theme, GlobalStyles, Text } from './theme';
 

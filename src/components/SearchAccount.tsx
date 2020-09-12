@@ -18,6 +18,12 @@ const SearchAccount = ({ submitAccount }: any) => {
     ref.current = event.target.value;
   };
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
   const handleSubmit = () => {
     if (!ref.current) return;
     submitAccount(ref.current);
@@ -25,7 +31,7 @@ const SearchAccount = ({ submitAccount }: any) => {
 
   return (
     <SearchAccountWrapper alignItems="center" mx="auto" p="1rem" bg="#444448" borderRadius="4px">
-      <SearchInput inverted onChange={handleChange} icon="search" />
+      <SearchInput inverted onChange={handleChange} icon="search" onKeyDown={handleKeyDown} />
       <Spacer mr={10} />
       <PrimaryButton onClick={handleSubmit}>Search Repository</PrimaryButton>
     </SearchAccountWrapper>
