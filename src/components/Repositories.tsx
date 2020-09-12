@@ -14,10 +14,11 @@ const ItemsGroup = styled(Item.Group)({
   margin: '0 !important',
 });
 
-const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData }) => {
+const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore, lastItemCursor }) => {
   return (
     <ItemsGroup relaxed>
-      {repositoriesData.map(({ name, url, description, id }) => {
+      {repositoriesData.map(({ cursor, node }) => {
+        const { name, url, description, id } = node;
         return (
           <Card fluid key={id}>
             <Item.Content>
@@ -30,7 +31,28 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData }) => {
           </Card>
         );
       })}
-      <SecondaryButton compact fluid size="mini">
+      <SecondaryButton
+        compact
+        fluid
+        size="mini"
+        onClick={() =>
+          // https://www.apollographql.com/docs/react/data/pagination/#using-fetchmore
+          fetchMore({
+            variables: {
+              before: lastItemCursor,
+            },
+            updateQuery: (prevRes, { fetchMoreResult }) => {
+              if (!fetchMoreResult) return prevRes;
+              fetchMoreResult.user.repositories.edges = [
+                ...prevRes.user.repositories.edges,
+                ...fetchMoreResult.user.repositories.edges,
+              ];
+
+              return fetchMoreResult;
+            },
+          })
+        }
+      >
         <Text>load more</Text>
       </SecondaryButton>
     </ItemsGroup>

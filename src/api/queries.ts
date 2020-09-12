@@ -36,3 +36,25 @@ export const GET_ACCOUNT = gql`
     }
   }
 `;
+
+export const TEST = gql`
+  query($number_of_repos: Int!, $username: String!, $before: String) {
+    user(login: $username) {
+      id
+      repositories(last: $number_of_repos, before: $before) {
+        edges {
+          cursor
+          node {
+            id
+            name
+            url
+            description
+          }
+        }
+        pageInfo {
+          endCursor
+        }
+      }
+    }
+  }
+`;

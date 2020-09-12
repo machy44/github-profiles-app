@@ -16,6 +16,7 @@ export interface AccountVars {
 export interface RepositoriesVars {
   number_of_repos: number;
   username: string;
+  after?: string;
 }
 
 export interface RepositoriesData {
@@ -23,10 +24,11 @@ export interface RepositoriesData {
 }
 
 interface Repositories {
-  repositories: Nodes;
+  repositories: Edges;
 }
 
-interface Nodes {
+interface Edges {
+  cursor: string;
   nodes: Node[];
 }
 

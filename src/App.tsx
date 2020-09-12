@@ -4,7 +4,7 @@ import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import { Icon } from 'semantic-ui-react';
-import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
+import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT, TEST } from './api/queries';
 import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from './api/types';
 import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
@@ -28,15 +28,15 @@ const App = () => {
   const [account, setAccount] = useState('');
   const [isSorted, setIsSorted] = useState<boolean>(false);
 
-  const { loading: loadingRepository, data: repositoriesResponse } = useQuery<RepositoriesData, RepositoriesVars>(
-    GET_ACC_REPOSITORIES,
-    {
-      variables: {
-        number_of_repos: 15,
-        username: account,
-      },
+  const { loading: loadingRepository, data: repositoriesResponse, fetchMore } = useQuery<
+    RepositoriesData,
+    RepositoriesVars
+  >(TEST, {
+    variables: {
+      number_of_repos: 5,
+      username: account,
     },
-  );
+  });
 
   const { loading: loadingAccount, data: accountResponse } = useQuery<Account, AccountVars>(GET_ACCOUNT, {
     variables: {
@@ -47,9 +47,11 @@ const App = () => {
   const handleSort = () => setIsSorted((value: Boolean) => !value);
 
   // dont mutate original array
-  const repositories = [...(repositoriesResponse?.user.repositories.nodes || [])];
+  const repositories = [...(repositoriesResponse?.user.repositories.edges || [])];
 
-  isSorted && repositories.sort(sortByName);
+  console.log('repositoriesResponse', repositoriesResponse);
+
+  // isSorted && repositories.sort(sortByName);
 
   return (
     <>
@@ -69,7 +71,11 @@ const App = () => {
             ) : null}
             {repositories.length ? (
               <>
-                <Repositories repositoriesData={repositories} />
+                <Repositories
+                  repositoriesData={repositories}
+                  fetchMore={fetchMore}
+                  lastItemCursor={repositoriesResponse?.user.repositories.pageInfo.endCursor}
+                />
                 <SortRepositoriesWrapper justifySelf="start">
                   <SecondaryButton compact onClick={handleSort} toggle active={isSorted}>
                     <Text>sort by name</Text>
