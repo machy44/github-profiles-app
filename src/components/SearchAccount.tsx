@@ -12,9 +12,9 @@ const SearchAccountWrapper = styled(Flex)({
 });
 
 const SearchAccount = ({ submitAccount }: any) => {
-  const ref = useRef();
+  const ref = useRef<string>();
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     ref.current = event.target.value;
   };
 
