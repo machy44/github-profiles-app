@@ -1,9 +1,15 @@
 import React, { useRef } from 'react';
 import { PrimaryButton, SearchInput } from '../common';
-import { Icon } from 'semantic-ui-react';
-import { Layout, Text } from '../theme';
+import styled from '@emotion/styled';
+import { Layout } from '../theme';
 
 const { Flex, Spacer } = Layout;
+
+const SearchAccountWrapper = styled(Flex)({
+  position: 'sticky',
+  top: 0,
+  zIndex: 2,
+});
 
 const SearchAccount = ({ submitAccount }: any) => {
   const ref = useRef();
@@ -18,13 +24,11 @@ const SearchAccount = ({ submitAccount }: any) => {
   };
 
   return (
-    <Flex flexDirection="column" alignItems="center" width="70%" mx="auto" py="2rem">
-      <Flex>
-        <SearchInput inverted onChange={handleChange} icon="search" />
-        <Spacer mr={10} />
-        <PrimaryButton onClick={handleSubmit}>Search Repository</PrimaryButton>
-      </Flex>
-    </Flex>
+    <SearchAccountWrapper alignItems="center" mx="auto" p="1rem" bg="#444448" borderRadius="4px">
+      <SearchInput inverted onChange={handleChange} icon="search" />
+      <Spacer mr={10} />
+      <PrimaryButton onClick={handleSubmit}>Search Repository</PrimaryButton>
+    </SearchAccountWrapper>
   );
 };
 

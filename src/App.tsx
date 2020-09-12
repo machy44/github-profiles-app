@@ -22,7 +22,7 @@ const App = () => {
     GET_ACC_REPOSITORIES,
     {
       variables: {
-        number_of_repos: 10,
+        number_of_repos: 15,
         username: account,
       },
     },
