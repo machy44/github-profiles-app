@@ -31,6 +31,7 @@ interface Nodes {
 }
 
 export interface Node {
+  id: string;
   name: string;
   url: string;
   description: string;

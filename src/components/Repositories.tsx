@@ -10,9 +10,9 @@ const ItemsGroup = styled(Item.Group)({
 const Repositories: React.FC<{ repositoriesData: Node[] }> = ({ repositoriesData }) => {
   return (
     <ItemsGroup relaxed>
-      {repositoriesData.map(({ name, url, description }) => {
+      {repositoriesData.map(({ name, url, description, id }) => {
         return (
-          <Card fluid>
+          <Card fluid key={id}>
             <Item.Content>
               <Item.Header>{name}</Item.Header>
               <Item.Meta>{description}</Item.Meta>

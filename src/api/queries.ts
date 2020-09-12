@@ -15,6 +15,7 @@ export const GET_ACC_REPOSITORIES = gql`
     user(login: $username) {
       repositories(last: $number_of_repos) {
         nodes {
+          id
           name
           url
           description
@@ -27,6 +28,7 @@ export const GET_ACC_REPOSITORIES = gql`
 export const GET_ACCOUNT = gql`
   query($username: String!) {
     user(login: $username) {
+      id
       name
       avatarUrl
       email
