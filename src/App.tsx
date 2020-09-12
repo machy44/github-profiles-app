@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { ThemeProvider } from 'emotion-theming';
 import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
-import { Account, AccountVars, RepositoriesData, RepositoriesVars } from './api/types';
+import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from './api/types';
+import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
 import { Layout } from './theme';
 import { Global } from '@emotion/core';
@@ -18,6 +19,7 @@ const { Flex, Grid, Box } = Layout;
 const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
   const [account, setAccount] = useState('');
+  const [isSorted, setIsSorted] = useState<Boolean>(false);
 
   const { loading: loadingRepository, data: repositoriesResponse } = useQuery<RepositoriesData, RepositoriesVars>(
     GET_ACC_REPOSITORIES,
@@ -35,7 +37,10 @@ const App = () => {
     },
   });
 
-  console.log('repositoriesResponse', repositoriesResponse);
+  // dont mutate original array
+  let repositories = [...(repositoriesResponse?.user.repositories.nodes || [])];
+
+  repositories = isSorted ? repositories.sort(sortByName) : repositories;
 
   return (
     <>
@@ -53,9 +58,7 @@ const App = () => {
                 <Profile profileData={accountResponse.user} />
               </Box>
             ) : null}
-            {repositoriesResponse ? (
-              <Repositories repositoriesData={repositoriesResponse.user.repositories.nodes} />
-            ) : null}
+            {repositories.length ? <Repositories repositoriesData={repositories} handleSort={setIsSorted} /> : null}
           </Grid>
         </Flex>
       </ThemeProvider>

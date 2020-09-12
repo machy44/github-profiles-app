@@ -7,6 +7,11 @@ import { Node } from '../api/types';
 
 const { Box } = Layout;
 
+interface RepositoriesProps {
+  repositoriesData: Node[];
+  handleSort: Function;
+}
+
 const ItemsGroup = styled(Item.Group)({
   margin: '0 !important',
 });
@@ -18,7 +23,7 @@ const SortRepositoriesWrapper = styled(Box)({
   },
 });
 
-const Repositories: React.FC<{ repositoriesData: Node[] }> = ({ repositoriesData }) => {
+const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, handleSort }) => {
   return (
     <>
       <ItemsGroup relaxed>
@@ -35,7 +40,7 @@ const Repositories: React.FC<{ repositoriesData: Node[] }> = ({ repositoriesData
         })}
       </ItemsGroup>
       <SortRepositoriesWrapper justifySelf="start">
-        <SecondaryButton compact>
+        <SecondaryButton compact onClick={() => handleSort((value: Boolean) => !value)}>
           <p>sort by name</p>
           <Icon name="sort" inverted fitted />
         </SecondaryButton>
