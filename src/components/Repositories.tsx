@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { SecondaryButton } from '../common';
+import { SecondaryButton, Link } from '../common';
 import { Item, Card, Icon } from 'semantic-ui-react';
 import { Layout, Text } from '../theme';
 import { Node } from '../api/types';
@@ -34,7 +34,9 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, handleSor
               <Item.Content>
                 <Item.Header>{name}</Item.Header>
                 <Item.Meta>{description}</Item.Meta>
-                <Item.Extra as="a">{url}</Item.Extra>
+                <Item.Extra>
+                  <Link href={url} />
+                </Item.Extra>
               </Item.Content>
             </Card>
           );

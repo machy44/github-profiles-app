@@ -21,7 +21,7 @@ const Profile: React.FC<{ profileData: AccountData }> = ({ profileData }) => {
         {email && <Card.Description>{email}</Card.Description>}
       </CardContent>
       <Card.Content extra>
-        <Link url={url} />
+        <Link href={url} />
       </Card.Content>
     </ProfileCard>
   );
