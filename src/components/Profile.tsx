@@ -7,7 +7,7 @@ import { Layout } from '../theme/';
 
 const { Grid } = Layout;
 
-const ProfileCard = styled(({ className, ...otherProps }) => <Card {...otherProps} className={className} />)({
+const ProfileCard = styled(Card)({
   width: 'min-content !important',
 });
 
@@ -15,7 +15,7 @@ const Profile: React.FC<{ profileData: AccountData }> = ({ profileData }) => {
   const { name, url, email, avatarUrl } = profileData;
   return (
     <ProfileCard>
-      <Image src={avatarUrl} alt="avatar image" wrapped ui={false} />
+      <Image src={avatarUrl} alt="avatar image" wrapped />
       <CardContent>
         <CardHeader>{name}</CardHeader>
         {email && <Card.Description>{email}</Card.Description>}

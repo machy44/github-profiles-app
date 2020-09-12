@@ -45,7 +45,7 @@ export const theme: Theme = {
     md: 16,
     lg: 32,
   },
-
+  letterSpacings: [1, 2, 3],
   fontSizes: [12, 14, 16, 20, 32],
   fontWeights: [500, 600, 700],
 };

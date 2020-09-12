@@ -18,7 +18,7 @@ const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
   const [account, setAccount] = useState('');
 
-  const { loading: loadingRepository, data: repositoriesData } = useQuery(GET_ACC_REPOSITORIES, {
+  const { loading: loadingRepository, data: repositoriesResponse } = useQuery(GET_ACC_REPOSITORIES, {
     variables: {
       number_of_repos: 5,
       username: account,
@@ -31,7 +31,7 @@ const App = () => {
     },
   });
 
-  console.log('accountData', accountResponse);
+  console.log('repositoriesResponse', repositoriesResponse);
 
   return (
     <>
@@ -39,7 +39,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Flex flexDirection="column" p={['xs', 'sm', 'md', 'lg']}>
           <Loader active={loadingAccount || loadingRepository} />
-          <Text fontSize={[2, 3, 4]} color="white" fontFamily="inherit" textAlign="center">
+          <Text fontSize={[3, 4]} color="white" fontFamily="inherit" textAlign="center" letterSpacing={[1, 2]}>
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
