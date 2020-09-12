@@ -28,7 +28,7 @@ will start development server on [http://localhost:8080](http://localhost:8080)
 ### project structure
 
 - api -> folder where graphql queries, api types and apollo client are defined
-- theme -> inside theme there is layout, typography and theme defined. I used styled-system (https://styled-system.com/) and emotion.js for styling
+- theme -> inside theme there is layout, typography and theme defined. I used styled-system (https://styled-system.com/) and emotion.js for styling. Maybe ui would be better name for this folder
 - common -> inside common folder are base components used for constructing more complex components
 - components -> components which are using common and theme folder
 
