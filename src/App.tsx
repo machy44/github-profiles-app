@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { ThemeProvider } from 'emotion-theming';
-import { CURRENT_USER, User, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
+import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
+import { Account, AccountVars } from './api/types';
 import { Layout, Loader } from './common';
 import { Global } from '@emotion/core';
+import { Container } from 'semantic-ui-react';
 import { SearchAccount, Profile, Repositories } from './components';
 import { theme, GlobalStyles, Text } from './theme';
 
 import 'semantic-ui-css/semantic.min.css';
+
+const { Flex } = Layout;
 
 const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
@@ -20,28 +24,28 @@ const App = () => {
     },
   });
 
-  const { loading: loadingAccount, data: accountData } = useQuery(GET_ACCOUNT, {
+  const { loading: loadingAccount, data: accountResponse } = useQuery<Account, AccountVars>(GET_ACCOUNT, {
     variables: {
       username: account,
     },
   });
 
-  console.log('account', account);
+  console.log('accountData', accountResponse);
 
   return (
     <>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme}>
-        <Loader active={loadingAccount || loadingRepository} />
-        <Layout.Flex>
+        <Flex flexDirection="column">
+          <Loader active={loadingAccount || loadingRepository} />
           <Text color="white" fontFamily="inherit">
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
           {/* <span>{JSON.stringify(userData)}</span> */}
-          <Profile profileData={accountData} />
-          <Repositories data={repositoriesData} />
-        </Layout.Flex>
+          {accountResponse ? <Profile profileData={accountResponse.user} /> : null}
+          {/* <Repositories data={repositoriesData} /> */}
+        </Flex>
       </ThemeProvider>
     </>
   );
