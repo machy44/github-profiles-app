@@ -40,9 +40,12 @@ export const theme: Theme = {
   },
   breakpoints: ['40em', '52em', '64em'],
   space: {
-    small: 4,
-    medium: 8,
-    large: 16,
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 32,
   },
+
   fontSizes: [12, 14, 16, 20, 32],
+  fontWeights: [500, 600, 700],
 };

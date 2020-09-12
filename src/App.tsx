@@ -37,7 +37,7 @@ const App = () => {
     <>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme}>
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" p={['xs', 'sm', 'md', 'lg']}>
           <Loader active={loadingAccount || loadingRepository} />
           <Text fontSize={[2, 3, 4]} color="white" fontFamily="inherit" textAlign="center">
             Github profiles app
