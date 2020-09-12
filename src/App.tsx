@@ -19,7 +19,7 @@ const { Flex, Grid, Box } = Layout;
 const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
   const [account, setAccount] = useState('');
-  const [isSorted, setIsSorted] = useState<Boolean>(false);
+  const [isSorted, setIsSorted] = useState<boolean>(false);
 
   const { loading: loadingRepository, data: repositoriesResponse } = useQuery<RepositoriesData, RepositoriesVars>(
     GET_ACC_REPOSITORIES,
@@ -58,7 +58,9 @@ const App = () => {
                 <Profile profileData={accountResponse.user} />
               </Box>
             ) : null}
-            {repositories.length ? <Repositories repositoriesData={repositories} handleSort={setIsSorted} /> : null}
+            {repositories.length ? (
+              <Repositories repositoriesData={repositories} handleSort={setIsSorted} isSorted={isSorted} />
+            ) : null}
           </Grid>
         </Flex>
       </ThemeProvider>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { SecondaryButton } from '../common';
 import { Item, Card, Icon } from 'semantic-ui-react';
-import { Layout } from '../theme';
+import { Layout, Text } from '../theme';
 import { Node } from '../api/types';
 
 const { Box } = Layout;
@@ -10,6 +10,7 @@ const { Box } = Layout;
 interface RepositoriesProps {
   repositoriesData: Node[];
   handleSort: Function;
+  isSorted: boolean;
 }
 
 const ItemsGroup = styled(Item.Group)({
@@ -23,7 +24,7 @@ const SortRepositoriesWrapper = styled(Box)({
   },
 });
 
-const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, handleSort }) => {
+const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, handleSort, isSorted }) => {
   return (
     <>
       <ItemsGroup relaxed>
@@ -40,8 +41,8 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, handleSor
         })}
       </ItemsGroup>
       <SortRepositoriesWrapper justifySelf="start">
-        <SecondaryButton compact onClick={() => handleSort((value: Boolean) => !value)}>
-          <p>sort by name</p>
+        <SecondaryButton compact onClick={() => handleSort((value: Boolean) => !value)} toggle active={isSorted}>
+          <Text>sort by name</Text>
           <Icon name="sort" inverted fitted />
         </SecondaryButton>
       </SortRepositoriesWrapper>
