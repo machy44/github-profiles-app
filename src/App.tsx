@@ -3,10 +3,11 @@ import { useQuery } from '@apollo/client';
 import { ThemeProvider } from 'emotion-theming';
 import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
 import { Account, AccountVars, RepositoriesData, RepositoriesVars } from './api/types';
-import { Loader } from './common';
+import { Loader, SecondaryButton } from './common';
 import { Layout } from './theme';
 import { Global } from '@emotion/core';
 import { Container } from 'semantic-ui-react';
+import { Item, Card, Icon } from 'semantic-ui-react';
 import { SearchAccount, Profile, Repositories } from './components';
 import { theme, GlobalStyles, Text } from './theme';
 
@@ -46,7 +47,7 @@ const App = () => {
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
-          <Grid gridTemplateColumns="auto 1fr" gridGap={['sm', 'md', 'lg']} mt={['sm', 'md', 'lg']}>
+          <Grid gridTemplateColumns="auto 1fr auto" gridGap={['sm', 'md', 'lg']} mt={['sm', 'md', 'lg']}>
             {accountResponse ? (
               <Box justifySelf="start">
                 <Profile profileData={accountResponse.user} />
