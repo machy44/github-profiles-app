@@ -36,9 +36,9 @@ const App = () => {
   });
 
   // dont mutate original array
-  let repositories = [...(repositoriesResponse?.user.repositories.nodes || [])];
+  const repositories = [...(repositoriesResponse?.user.repositories.nodes || [])];
 
-  repositories = isSorted ? repositories.sort(sortByName) : repositories;
+  isSorted && repositories.sort(sortByName);
 
   return (
     <>
