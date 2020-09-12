@@ -6,7 +6,7 @@ export * as Layout from './Layout';
 export { Text } from './typography';
 
 export const GlobalStyles = css`
-  @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
   body {
     background: #444448;
   }
@@ -18,7 +18,7 @@ export const GlobalStyles = css`
   input,
   div,
   button {
-    font-family: Rubik, sans-serif !important;
+    font-family: Quicksand, sans-serif !important;
   }
 `;
 
