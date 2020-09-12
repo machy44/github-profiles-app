@@ -1,18 +1,22 @@
 import React from 'react';
 import { AccountData } from '../api/types';
-import { Card } from 'semantic-ui-react';
-import { Layout } from '../common/';
+import { Card, CardContent, CardHeader, Image } from 'semantic-ui-react';
+import { Layout, Link } from '../common/';
 
 const { Grid } = Layout;
 
-const Profile: React.FC<AccountData> = ({ profileData }) => {
+const Profile: React.FC<{ profileData: AccountData }> = ({ profileData }) => {
   const { name, url, email, avatarUrl } = profileData;
   return (
     <Card>
-      <div>{name}</div>
-      <div>{url}</div>
-      <div>{email}</div>
-      <div>{avatarUrl}</div>
+      <Image src={avatarUrl} alt="avatar image" wrapped ui={false} />
+      <CardContent>
+        <CardHeader>{name}</CardHeader>
+        {email && <Card.Description>{email}</Card.Description>}
+      </CardContent>
+      <Card.Content extra>
+        <Link url={url} />
+      </Card.Content>
     </Card>
   );
 };

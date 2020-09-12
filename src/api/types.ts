@@ -1,8 +1,8 @@
 export interface AccountData {
   name: string;
-  avatarUrl: URL;
+  avatarUrl: string;
   email: string;
-  url: URL;
+  url: string;
 }
 
 export interface Account {
