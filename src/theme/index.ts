@@ -16,6 +16,7 @@ export const GlobalStyles = css`
   body,
   span,
   input,
+  div,
   button {
     font-family: Rubik, sans-serif !important;
   }
