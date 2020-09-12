@@ -47,7 +47,9 @@ const App = () => {
           </Text>
           <SearchAccount submitAccount={setAccount} />
           {accountResponse ? <Profile profileData={accountResponse.user} /> : null}
-          {repositoriesResponse ? <Repositories data={repositoriesResponse} /> : null}
+          {repositoriesResponse ? (
+            <Repositories repositoriesData={repositoriesResponse.user.repositories.nodes} />
+          ) : null}
         </Flex>
       </ThemeProvider>
     </>

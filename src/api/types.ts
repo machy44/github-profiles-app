@@ -23,10 +23,14 @@ export interface RepositoriesData {
 }
 
 interface Repositories {
-  repositories: Node[];
+  repositories: Nodes;
 }
 
-interface Node {
+interface Nodes {
+  nodes: Node[];
+}
+
+export interface Node {
   name: string;
   url: string;
   description: string;

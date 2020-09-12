@@ -1,7 +1,9 @@
 import React from 'react';
+import { Node } from '../api/types';
 
-const Repositories = ({ data }: any) => {
-  return <div>{JSON.stringify(data)}</div>;
+const Repositories: React.FC<{ repositoriesData: Node[] }> = ({ repositoriesData }) => {
+  console.log('repositoriesData', repositoriesData);
+  return <div />;
 };
 
 export default Repositories;
