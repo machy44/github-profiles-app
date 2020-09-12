@@ -1,30 +1,22 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { SecondaryButton, Link } from '../common';
-import { Item, Card, Icon } from 'semantic-ui-react';
-import { Layout, Text } from '../theme';
+import { Link } from '../common';
+import { Item, Card } from 'semantic-ui-react';
+import { Layout } from '../theme';
 import { Node } from '../api/types';
+import { Loader, SecondaryButton } from './common';
 
 const { Box } = Layout;
 
 interface RepositoriesProps {
   repositoriesData: Node[];
-  handleSort: Function;
-  isSorted: boolean;
 }
 
 const ItemsGroup = styled(Item.Group)({
   margin: '0 !important',
 });
 
-const SortRepositoriesWrapper = styled(Box)({
-  '& > button': {
-    position: 'sticky',
-    top: 0,
-  },
-});
-
-const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, handleSort, isSorted }) => {
+const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData }) => {
   return (
     <>
       <ItemsGroup relaxed>
@@ -41,13 +33,8 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, handleSor
             </Card>
           );
         })}
+        <SecondaryButton compact>load more</SecondaryButton>
       </ItemsGroup>
-      <SortRepositoriesWrapper justifySelf="start">
-        <SecondaryButton compact onClick={() => handleSort((value: Boolean) => !value)} toggle active={isSorted}>
-          <Text>sort by name</Text>
-          <Icon name="sort" inverted fitted />
-        </SecondaryButton>
-      </SortRepositoriesWrapper>
     </>
   );
 };

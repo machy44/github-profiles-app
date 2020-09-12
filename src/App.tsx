@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
+import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
+import styled from '@emotion/styled';
+import { Icon } from 'semantic-ui-react';
 import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
 import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from './api/types';
 import { sortByName } from './utils';
-import { Loader } from './common';
+import { Loader, SecondaryButton } from './common';
 import { Layout } from './theme';
-import { Global } from '@emotion/core';
 import { SearchAccount, Profile, Repositories } from './components';
 import { theme, GlobalStyles, Text } from './theme';
 
 import 'semantic-ui-css/semantic.min.css';
 
 const { Flex, Grid, Box } = Layout;
+
+export const SortRepositoriesWrapper = styled(Box)({
+  '& > button': {
+    position: 'sticky',
+    top: 0,
+  },
+});
 
 const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
@@ -34,6 +43,8 @@ const App = () => {
       username: account,
     },
   });
+
+  const handleSort = () => setIsSorted((value: Boolean) => !value);
 
   // dont mutate original array
   const repositories = [...(repositoriesResponse?.user.repositories.nodes || [])];
@@ -57,7 +68,15 @@ const App = () => {
               </Box>
             ) : null}
             {repositories.length ? (
-              <Repositories repositoriesData={repositories} handleSort={setIsSorted} isSorted={isSorted} />
+              <>
+                <Repositories repositoriesData={repositories} />
+                <SortRepositoriesWrapper justifySelf="start">
+                  <SecondaryButton compact onClick={handleSort} toggle active={isSorted}>
+                    <Text>sort by name</Text>
+                    <Icon name="sort" inverted fitted />
+                  </SecondaryButton>
+                </SortRepositoriesWrapper>
+              </>
             ) : null}
           </Grid>
         </Flex>
