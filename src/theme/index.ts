@@ -1,6 +1,8 @@
 import { css } from '@emotion/core';
 import { Theme as StyledTheme } from 'styled-system';
 
+export * as Layout from './Layout';
+
 export { Text } from './typography';
 
 export const GlobalStyles = css`
@@ -42,5 +44,5 @@ export const theme: Theme = {
     medium: 8,
     large: 16,
   },
-  fontSizes: [12, 14, 16, 20],
+  fontSizes: [12, 14, 16, 20, 32],
 };

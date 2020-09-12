@@ -1,7 +1,8 @@
 import React from 'react';
 import { AccountData } from '../api/types';
+import { Link } from '../common';
 import { Card, CardContent, CardHeader, Image } from 'semantic-ui-react';
-import { Layout, Link } from '../common/';
+import { Layout } from '../theme/';
 
 const { Grid } = Layout;
 

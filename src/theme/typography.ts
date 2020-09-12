@@ -3,4 +3,4 @@ import styled from '@emotion/styled';
 
 export const Text = styled.p(typography, color);
 
-// export const Title = () => <Text fontSize={32} />;
+// export const AppTitle = styled((props) => <Text {...props} lineHeight={32} />)({});

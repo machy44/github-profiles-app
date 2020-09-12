@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { PrimaryButton, Layout, SearchInput } from '../common';
+import { PrimaryButton, SearchInput } from '../common';
+import { Layout } from '../theme';
 
 const { Flex, Spacer } = Layout;
 

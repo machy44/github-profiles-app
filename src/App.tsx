@@ -3,7 +3,8 @@ import { useQuery } from '@apollo/client';
 import { ThemeProvider } from 'emotion-theming';
 import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
 import { Account, AccountVars } from './api/types';
-import { Layout, Loader } from './common';
+import { Loader } from './common';
+import { Layout } from './theme';
 import { Global } from '@emotion/core';
 import { Container } from 'semantic-ui-react';
 import { SearchAccount, Profile, Repositories } from './components';
@@ -38,7 +39,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Flex flexDirection="column">
           <Loader active={loadingAccount || loadingRepository} />
-          <Text color="white" fontFamily="inherit">
+          <Text fontSize={[2, 3, 4]} color="white" fontFamily="inherit" textAlign="center">
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
