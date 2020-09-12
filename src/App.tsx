@@ -12,7 +12,7 @@ import { theme, GlobalStyles, Text } from './theme';
 
 import 'semantic-ui-css/semantic.min.css';
 
-const { Flex } = Layout;
+const { Flex, Grid, Box } = Layout;
 
 const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
@@ -22,7 +22,7 @@ const App = () => {
     GET_ACC_REPOSITORIES,
     {
       variables: {
-        number_of_repos: 5,
+        number_of_repos: 10,
         username: account,
       },
     },
@@ -40,16 +40,22 @@ const App = () => {
     <>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme}>
-        <Flex flexDirection="column" p={['xs', 'sm', 'md', 'lg']}>
+        <Flex flexDirection="column" p={['xs', 'sm', 'md', 'lg']} mx="auto" alignItems="center">
           <Loader active={loadingAccount || loadingRepository} />
           <Text fontSize={[3, 4]} color="white" fontFamily="inherit" textAlign="center" letterSpacing={[1, 2]}>
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
-          {accountResponse ? <Profile profileData={accountResponse.user} /> : null}
-          {repositoriesResponse ? (
-            <Repositories repositoriesData={repositoriesResponse.user.repositories.nodes} />
-          ) : null}
+          <Grid gridTemplateColumns="auto 1fr" gridGap={['sm', 'md', 'lg']} mt={['sm', 'md', 'lg']}>
+            {accountResponse ? (
+              <Box justifySelf="start">
+                <Profile profileData={accountResponse.user} />
+              </Box>
+            ) : null}
+            {repositoriesResponse ? (
+              <Repositories repositoriesData={repositoriesResponse.user.repositories.nodes} />
+            ) : null}
+          </Grid>
         </Flex>
       </ThemeProvider>
     </>
