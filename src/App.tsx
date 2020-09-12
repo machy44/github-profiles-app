@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { ThemeProvider } from 'emotion-theming';
 import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
-import { Account, AccountVars } from './api/types';
+import { Account, AccountVars, RepositoriesData, RepositoriesVars } from './api/types';
 import { Loader } from './common';
 import { Layout } from './theme';
 import { Global } from '@emotion/core';
@@ -18,12 +18,15 @@ const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
   const [account, setAccount] = useState('');
 
-  const { loading: loadingRepository, data: repositoriesResponse } = useQuery(GET_ACC_REPOSITORIES, {
-    variables: {
-      number_of_repos: 5,
-      username: account,
+  const { loading: loadingRepository, data: repositoriesResponse } = useQuery<RepositoriesData, RepositoriesVars>(
+    GET_ACC_REPOSITORIES,
+    {
+      variables: {
+        number_of_repos: 5,
+        username: account,
+      },
     },
-  });
+  );
 
   const { loading: loadingAccount, data: accountResponse } = useQuery<Account, AccountVars>(GET_ACCOUNT, {
     variables: {
@@ -43,9 +46,8 @@ const App = () => {
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
-          {/* <span>{JSON.stringify(userData)}</span> */}
           {accountResponse ? <Profile profileData={accountResponse.user} /> : null}
-          {/* <Repositories data={repositoriesData} /> */}
+          {repositoriesResponse ? <Repositories data={repositoriesResponse} /> : null}
         </Flex>
       </ThemeProvider>
     </>
