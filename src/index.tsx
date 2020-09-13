@@ -6,6 +6,8 @@ import { client } from './api';
 
 import App from './App';
 
+import 'semantic-ui-css/semantic.min.css';
+
 ReactDOM.render(
   <ApolloProvider client={client}>
     <App />

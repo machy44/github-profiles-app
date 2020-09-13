@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { SMALL_SCREEN } from '../consts';
 
 // https://blog.logrocket.com/developing-responsive-layouts-with-react-hooks/
 const useViewport = () => {
@@ -10,7 +11,9 @@ const useViewport = () => {
     return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
 
-  return { width };
+  const isMobile = width <= SMALL_SCREEN;
+
+  return { width, isMobile };
 };
 
 export default useViewport;

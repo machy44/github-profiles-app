@@ -9,11 +9,8 @@ import { Icon, Message } from 'semantic-ui-react';
 import { useFetch, useViewport } from './hooks';
 import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
-import { Layout } from './theme';
 import { SearchAccount, Profile, Repositories } from './components';
-import { theme, GlobalStyles, Text } from './theme';
-
-import 'semantic-ui-css/semantic.min.css';
+import { theme, GlobalStyles, Text, Layout } from './theme';
 
 const { Flex, Grid, Box } = Layout;
 
@@ -23,8 +20,6 @@ export const SortRepositoriesWrapper = styled(Box)({
     top: 0,
   },
 });
-
-const SMALL_SCREEN = 768;
 
 const App = () => {
   const {
@@ -38,7 +33,8 @@ const App = () => {
     fetchMore,
     accError,
   } = useFetch();
-  const { width } = useViewport();
+
+  const { isMobile } = useViewport();
 
   const handleSort = () => setIsSorted((value: boolean) => !value);
 
@@ -46,8 +42,6 @@ const App = () => {
   const repositories = [...(repositoriesResponse?.user.repositories.edges || [])];
 
   isSorted && repositories.sort(sortByName);
-
-  const isMobile = width <= SMALL_SCREEN;
 
   const sortButton = (style: string) => (
     <SortRepositoriesWrapper
@@ -90,7 +84,7 @@ const App = () => {
             </Message>
           )}
           <Grid
-            gridTemplateColumns={width <= SMALL_SCREEN ? 'auto' : 'auto 1fr auto'}
+            gridTemplateColumns={isMobile ? 'auto' : 'auto 1fr auto'}
             gridGap={['sm', 'md', 'lg']}
             mt={['sm', 'md', 'lg']}
           >
