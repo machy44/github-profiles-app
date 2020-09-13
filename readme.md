@@ -1,8 +1,8 @@
 # USAGE
 
 1. create .env file in root of the project and create GITHUB_AUTH_TOKEN variable
-2. assing valid github user token to GITHUB_AUTH_TOKEN variable (example: GITHUB_AUTH_TOKEN={github_token})
-3. run yarn start:dev to start project
+2. assign valid github user token to GITHUB_AUTH_TOKEN variable (example: GITHUB_AUTH_TOKEN={github_token})
+3. run yarn start:dev to start dev server
 
 ## `yarn start:dev`
 
@@ -41,4 +41,4 @@
 
 github api docs link -> https://docs.github.com/en/graphql
 
-- check out https://github.com/MichalLytek/type-graphql
+- check out https://github.com/MichalLytek/type-graphql for graphql typings
