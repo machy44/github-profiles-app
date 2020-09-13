@@ -2,14 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from '../common';
 import { Item, Card, Icon } from 'semantic-ui-react';
-import { Edge, Repositories } from '../api/types';
+import { Edge, Repositories as RepositoriesType, RepositoriesData, RepositoriesVars } from '../api/types';
 import { SecondaryButton } from '../common';
 import { Text } from '../theme';
 
 interface RepositoriesProps {
   repositoriesData: Edge[];
   fetchMore: Function;
-  firstItemCursor?: Repositories['pageInfo']['startCursor'];
+  firstItemCursor?: RepositoriesType['pageInfo']['startCursor'];
 }
 
 const ItemsGroup = styled(Item.Group)({
@@ -45,7 +45,10 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore
               before: firstItemCursor,
               number_of_repos: 5,
             },
-            updateQuery: (prevRes, { fetchMoreResult }) => {
+            updateQuery: (
+              prevRes: RepositoriesData,
+              { fetchMoreResult }: { fetchMoreResult: RepositoriesData },
+            ): RepositoriesData => {
               if (!fetchMoreResult) return prevRes;
               fetchMoreResult.user.repositories.edges = [
                 ...prevRes.user.repositories.edges,
