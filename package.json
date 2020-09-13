@@ -18,7 +18,9 @@
   ],
   "dependencies": {
     "@apollo/client": "^3.1.5",
+    "@types/lodash.debounce": "^4.0.6",
     "graphql": "^15.3.0",
+    "lodash.debounce": "^4.0.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "semantic-ui-css": "^2.4.1",
