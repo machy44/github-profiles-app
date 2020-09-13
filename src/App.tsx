@@ -4,7 +4,7 @@ import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import { Icon } from 'semantic-ui-react';
-import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT, TEST } from './api/queries';
+import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
 import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from './api/types';
 import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
@@ -31,7 +31,7 @@ const App = () => {
   const { loading: loadingRepository, data: repositoriesResponse, fetchMore } = useQuery<
     RepositoriesData,
     RepositoriesVars
-  >(TEST, {
+  >(GET_ACC_REPOSITORIES, {
     variables: {
       number_of_repos: 10,
       username: account,

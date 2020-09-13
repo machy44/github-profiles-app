@@ -2,12 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from '../common';
 import { Item, Card, Icon } from 'semantic-ui-react';
-import { Node } from '../api/types';
+import { Edge, Repositories } from '../api/types';
 import { SecondaryButton } from '../common';
 import { Text } from '../theme';
 
 interface RepositoriesProps {
-  repositoriesData: Node[];
+  repositoriesData: Edge[];
+  fetchMore: Function;
+  firstItemCursor?: Repositories['pageInfo']['startCursor'];
 }
 
 const ItemsGroup = styled(Item.Group)({
@@ -17,7 +19,7 @@ const ItemsGroup = styled(Item.Group)({
 const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore, firstItemCursor }) => {
   return (
     <ItemsGroup relaxed>
-      {repositoriesData.map(({ cursor, node }) => {
+      {repositoriesData.map(({ node }) => {
         const { name, url, description, id } = node;
         return (
           <Card fluid key={id}>

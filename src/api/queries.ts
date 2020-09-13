@@ -10,21 +10,6 @@ export const CURRENT_USER = gql`
   }
 `;
 
-export const GET_ACC_REPOSITORIES = gql`
-  query($number_of_repos: Int!, $username: String!) {
-    user(login: $username) {
-      repositories(last: $number_of_repos) {
-        nodes {
-          id
-          name
-          url
-          description
-        }
-      }
-    }
-  }
-`;
-
 export const GET_ACCOUNT = gql`
   query($username: String!) {
     user(login: $username) {
@@ -37,7 +22,7 @@ export const GET_ACCOUNT = gql`
   }
 `;
 
-export const TEST = gql`
+export const GET_ACC_REPOSITORIES = gql`
   query($number_of_repos: Int!, $username: String!, $before: String) {
     user(login: $username) {
       id

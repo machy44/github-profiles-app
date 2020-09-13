@@ -16,20 +16,28 @@ export interface AccountVars {
 export interface RepositoriesVars {
   number_of_repos: number;
   username: string;
-  after?: string;
+  before?: string;
 }
 
 export interface RepositoriesData {
-  user: Repositories;
+  id: string;
+  user: {
+    id: string;
+    repositories: Repositories;
+  };
 }
 
-interface Repositories {
-  repositories: Edges;
+export interface Repositories {
+  edges: Edge[];
+  pageInfo: {
+    startCursor: string;
+    endCursor: string;
+  };
 }
 
-interface Edges {
+export interface Edge {
   cursor: string;
-  nodes: Node[];
+  node: Node;
 }
 
 export interface Node {
