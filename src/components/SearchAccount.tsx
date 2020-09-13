@@ -12,6 +12,7 @@ const SearchAccountWrapper = styled(Flex)({
 });
 
 const SearchAccount = ({ submitAccount }: any) => {
+  // useRef because I dont wanna to run unnecessary rerender
   const ref = useRef<string>();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Message } from 'semantic-ui-react';
 import { useFetch } from './hooks/useFetch';
 import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
@@ -24,14 +24,16 @@ export const SortRepositoriesWrapper = styled(Box)({
 const App = () => {
   const {
     setAccount,
+    account,
     isSorted,
     setIsSorted,
-    loadingRepository,
     repositoriesResponse,
-    loadingAccount,
+    waitingForResponse,
     accountResponse,
     fetchMore,
+    accError,
   } = useFetch();
+
   const handleSort = () => setIsSorted((value: boolean) => !value);
 
   // dont mutate original array
@@ -39,16 +41,23 @@ const App = () => {
 
   isSorted && repositories.sort(sortByName);
 
+  console.log('accError', accError?.message);
+
   return (
     <>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme}>
         <Flex flexDirection="column" p={['xs', 'sm', 'md', 'lg']} mx="auto" alignItems="center">
-          <Loader active={loadingAccount || loadingRepository} />
+          <Loader active={waitingForResponse} />
           <Text fontSize={[3, 4]} color="white" fontFamily="inherit" textAlign="center" letterSpacing={[1, 2]}>
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
+          {!waitingForResponse && !!account && !!accError && (
+            <Message color="red">
+              <Message.Header>{accError.message}</Message.Header>
+            </Message>
+          )}
           <Grid gridTemplateColumns="auto 1fr auto" gridGap={['sm', 'md', 'lg']} mt={['sm', 'md', 'lg']}>
             {accountResponse ? (
               <Box justifySelf="start">

@@ -8,7 +8,7 @@ export const useFetch = () => {
   const [account, setAccount] = useState<string>('');
   const [isSorted, setIsSorted] = useState<boolean>(false);
 
-  const { loading: loadingRepository, data: repositoriesResponse, fetchMore } = useQuery<
+  const { loading: loadingRepository, data: repositoriesResponse, fetchMore, error: repoError } = useQuery<
     RepositoriesData,
     RepositoriesVars
   >(GET_ACC_REPOSITORIES, {
@@ -18,20 +18,26 @@ export const useFetch = () => {
     },
   });
 
-  const { loading: loadingAccount, data: accountResponse } = useQuery<Account, AccountVars>(GET_ACCOUNT, {
-    variables: {
-      username: account,
+  const { loading: loadingAccount, data: accountResponse, error: accError } = useQuery<Account, AccountVars>(
+    GET_ACCOUNT,
+    {
+      variables: {
+        username: account,
+      },
     },
-  });
+  );
+
+  const waitingForResponse = loadingAccount || loadingRepository;
 
   return {
     setAccount,
+    account,
     isSorted,
     setIsSorted,
-    loadingRepository,
     repositoriesResponse,
-    loadingAccount,
+    waitingForResponse,
     accountResponse,
     fetchMore,
+    accError,
   };
 };
