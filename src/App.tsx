@@ -1,5 +1,8 @@
+// need this to setup pragma without babel preset
+// https://emotion.sh/docs/css-prop
+/** @jsx jsx */
 import React from 'react';
-import { Global } from '@emotion/core';
+import { Global, jsx, css } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import { Icon, Message } from 'semantic-ui-react';
@@ -44,10 +47,23 @@ const App = () => {
 
   isSorted && repositories.sort(sortByName);
 
-  console.log('width', width);
+  const isMobile = width <= SMALL_SCREEN;
+
+  const sortButton = (style: string) => (
+    <SortRepositoriesWrapper
+      css={css`
+        ${style}
+      `}
+    >
+      <SecondaryButton compact onClick={handleSort} toggle active={isSorted}>
+        <Text>sort by name</Text>
+        <Icon name="sort" inverted fitted />
+      </SecondaryButton>
+    </SortRepositoriesWrapper>
+  );
 
   return (
-    <>
+    <React.Fragment>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme}>
         <Flex
@@ -73,29 +89,34 @@ const App = () => {
             mt={['sm', 'md', 'lg']}
           >
             {accountResponse ? (
-              <Box justifySelf="start">
-                <Profile profileData={accountResponse.user} />
-              </Box>
+              <Flex position="relative">
+                <Box justifySelf="start">
+                  <Profile profileData={accountResponse.user} />
+                </Box>
+                {/* TODO: checkout for a better way to change layout on mobile screen*/}
+                {isMobile
+                  ? sortButton(`
+                  position: absolute;
+                  bottom: 0px;
+                  right: 0px;
+                `)
+                  : null}
+              </Flex>
             ) : null}
             {repositories.length ? (
-              <>
+              <React.Fragment>
                 <Repositories
                   repositoriesData={repositories}
                   fetchMore={fetchMore}
                   firstItemCursor={repositoriesResponse?.user.repositories.pageInfo.startCursor}
                 />
-                <SortRepositoriesWrapper justifySelf="start">
-                  <SecondaryButton compact onClick={handleSort} toggle active={isSorted}>
-                    <Text>sort by name</Text>
-                    <Icon name="sort" inverted fitted />
-                  </SecondaryButton>
-                </SortRepositoriesWrapper>
-              </>
+                {isMobile ? null : sortButton('justify-self: start')}
+              </React.Fragment>
             ) : null}
           </Grid>
         </Flex>
       </ThemeProvider>
-    </>
+    </React.Fragment>
   );
 };
 
