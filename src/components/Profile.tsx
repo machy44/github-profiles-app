@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { AccountData } from '../api/types';
 import { Link } from '../common';
 import { Card, CardContent, CardHeader, Image } from 'semantic-ui-react';
-import { Layout } from '../theme/';
 
 const ProfileCard = styled(Card)({
   width: 'min-content !important',

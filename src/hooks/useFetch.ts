@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ACC_REPOSITORIES, GET_ACCOUNT } from '../api/queries';
-import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from '../api/types';
+import { Account, AccountVars, RepositoriesData, RepositoriesVars } from '../api/types';
 
 const useFetch = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
