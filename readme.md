@@ -8,6 +8,10 @@
 
 - will start development server on [http://localhost:8080](http://localhost:8080)
 
+## yarn build
+
+- script for production build
+
 ## project structure
 
 - api -> folder where graphql queries, api types and apollo client are defined
@@ -27,6 +31,7 @@
   - https://chriscourses.com/blog/loading-fonts-webpack
   - https://webpack.js.org/guides/asset-management/
 - setup env variables in webpack- https://www.npmjs.com/package/dotenv-webpack
+- minimize svg in webpack https://iamakulov.com/notes/optimize-images-webpack/
 
 ## styles
 

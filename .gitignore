@@ -2,8 +2,7 @@
 /node_modules
 
 # production
-/build
-
+dist
 # IDE - I am using vscode
 .vscode
 

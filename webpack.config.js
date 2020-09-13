@@ -1,6 +1,7 @@
 const path = require('path');
 const dotenv = require('dotenv-webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // const isProduction = typeof NODE_ENV !== 'undefined' && NODE_ENV === 'production';
 // const mode = isProduction ? 'production' : 'development';
@@ -44,6 +45,29 @@ module.exports = {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader'],
       },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loader: 'url-loader',
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-url-loader',
+        options: {
+          // Images larger than 10 KB won’t be inlined
+          limit: 10 * 1024,
+          // Remove quotes around the encoded URL –
+          // they’re rarely useful
+          noquotes: true,
+        },
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        loader: 'image-webpack-loader',
+        // Specify enforce: 'pre' to apply the loader
+        // before url-loader/svg-url-loader
+        // and not duplicate it in rules with them
+        enforce: 'pre',
+      },
     ],
   },
   // watch: true,
@@ -51,6 +75,12 @@ module.exports = {
     // Enable webpack find ts and tsx files without an extension
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
-  plugins: [new dotenv()],
-  // plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    // for .env file
+    new dotenv(),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'public', 'index.html'),
+    }),
+    new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: ['dist'] }),
+  ],
 };
