@@ -16,6 +16,9 @@ const useFetch = () => {
       number_of_repos: 10,
       username: account,
     },
+    // to fix fetch more repositories loading state
+    // https://github.com/apollographql/apollo-client/issues/1617#issuecomment-297571724
+    notifyOnNetworkStatusChange: true,
   });
 
   const { loading: loadingAccount, data: accountResponse, error: accError } = useQuery<Account, AccountVars>(

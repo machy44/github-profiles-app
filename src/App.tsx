@@ -67,7 +67,8 @@ const App = () => {
           mx="auto"
           alignItems="center"
         >
-          <Loader active={waitingForResponse} />
+          {/* repositories.length  will prevent to show this loader when fetchMore is executed */}
+          <Loader active={!repositories.length && waitingForResponse} />
           <Text fontSize={[3, 4]} color="white" fontFamily="inherit" textAlign="center" letterSpacing={[1, 2]}>
             Github profiles app
           </Text>
@@ -109,6 +110,7 @@ const App = () => {
                   repositoriesData={repositories}
                   fetchMore={fetchMore}
                   firstItemCursor={repositoriesResponse?.user.repositories.pageInfo.startCursor}
+                  isLoadingMore={waitingForResponse}
                 />
                 {isMobile ? null : sortButton('justify-self: start')}
               </React.Fragment>

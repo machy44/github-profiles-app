@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from '../common';
-import { Item, Card, Icon } from 'semantic-ui-react';
-import { Edge, Repositories as RepositoriesType, RepositoriesData, RepositoriesVars } from '../api/types';
+import { Item, Card } from 'semantic-ui-react';
+import { Edge, Repositories as RepositoriesType, RepositoriesData } from '../api/types';
 import { SecondaryButton } from '../common';
 import { Text } from '../theme';
 
@@ -10,13 +10,14 @@ interface RepositoriesProps {
   repositoriesData: Edge[];
   fetchMore: Function;
   firstItemCursor?: RepositoriesType['pageInfo']['startCursor'];
+  isLoadingMore: boolean;
 }
 
 const ItemsGroup = styled(Item.Group)({
   margin: '0 !important',
 });
 
-const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore, firstItemCursor }) => {
+const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore, firstItemCursor, isLoadingMore }) => {
   return (
     <ItemsGroup relaxed>
       {repositoriesData.map(({ node }) => {
@@ -37,6 +38,7 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore
         disabled={!firstItemCursor}
         compact
         fluid
+        loading={isLoadingMore}
         size="mini"
         onClick={() =>
           // https://www.apollographql.com/docs/react/data/pagination/#using-fetchmore
