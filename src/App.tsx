@@ -78,7 +78,13 @@ const App = () => {
             Github profiles app
           </Text>
           <SearchAccount submitAccount={setAccount} />
-          {!waitingForResponse && !!account && !!accError && (
+          {/* if searched user does not exist show this error
+              I have to check repositories.length in conditional because if I search user which is cached
+              repositories and error message will be shown in the same moment. For some reason accError still exists
+              when apollo takes data from cache. I could reset accError or something but this was the fastest way to prevent 
+              this bug
+          */}
+          {!waitingForResponse && !!account && !!accError && !repositories.length && (
             <Message color="red">
               <Message.Header>{accError.message}</Message.Header>
             </Message>
