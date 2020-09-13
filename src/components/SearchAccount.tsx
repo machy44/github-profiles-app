@@ -34,7 +34,7 @@ const SearchAccount = ({ submitAccount }: any) => {
     <SearchAccountWrapper alignItems="center" mx="auto" p="1rem" bg="#444448" borderRadius="4px">
       <SearchInput inverted onChange={handleChange} icon="search" onKeyDown={handleKeyDown} />
       <Spacer mr={10} />
-      <PrimaryButton onClick={handleSubmit}>Search Repository</PrimaryButton>
+      <PrimaryButton onClick={handleSubmit}>Search Account</PrimaryButton>
     </SearchAccountWrapper>
   );
 };

@@ -70,7 +70,7 @@ const App = () => {
           {/* repositories.length  will prevent to show this loader when fetchMore is executed */}
           <Loader active={!repositories.length && waitingForResponse} />
           <Text fontSize={[3, 4]} color="white" fontFamily="inherit" textAlign="center" letterSpacing={[1, 2]}>
-            Github profiles app
+            fetch github repositories
           </Text>
           <SearchAccount submitAccount={setAccount} />
           {/* if searched user does not exist show this error
