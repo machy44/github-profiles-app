@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "webpack-dev-server --open",
     "check-type": "tsc -w",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "machy",
