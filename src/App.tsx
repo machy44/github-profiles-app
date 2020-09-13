@@ -4,7 +4,7 @@ import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import { Icon } from 'semantic-ui-react';
-import { CURRENT_USER, GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
+import { GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
 import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from './api/types';
 import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
@@ -25,7 +25,7 @@ export const SortRepositoriesWrapper = styled(Box)({
 
 const App = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
-  const [account, setAccount] = useState('');
+  const [account, setAccount] = useState<string>('');
   const [isSorted, setIsSorted] = useState<boolean>(false);
 
   const { loading: loadingRepository, data: repositoriesResponse, fetchMore } = useQuery<
@@ -48,8 +48,6 @@ const App = () => {
 
   // dont mutate original array
   const repositories = [...(repositoriesResponse?.user.repositories.edges || [])];
-
-  console.log('repositoriesResponse', repositoriesResponse);
 
   isSorted && repositories.sort(sortByName);
 

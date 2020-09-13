@@ -5,8 +5,6 @@ import { Link } from '../common';
 import { Card, CardContent, CardHeader, Image } from 'semantic-ui-react';
 import { Layout } from '../theme/';
 
-const { Grid } = Layout;
-
 const ProfileCard = styled(Card)({
   width: 'min-content !important',
 });
