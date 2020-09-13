@@ -33,7 +33,7 @@ const App = () => {
     RepositoriesVars
   >(TEST, {
     variables: {
-      number_of_repos: 5,
+      number_of_repos: 10,
       username: account,
     },
   });
@@ -51,7 +51,7 @@ const App = () => {
 
   console.log('repositoriesResponse', repositoriesResponse);
 
-  // isSorted && repositories.sort(sortByName);
+  isSorted && repositories.sort(sortByName);
 
   return (
     <>
@@ -74,7 +74,7 @@ const App = () => {
                 <Repositories
                   repositoriesData={repositories}
                   fetchMore={fetchMore}
-                  lastItemCursor={repositoriesResponse?.user.repositories.pageInfo.endCursor}
+                  firstItemCursor={repositoriesResponse?.user.repositories.pageInfo.startCursor}
                 />
                 <SortRepositoriesWrapper justifySelf="start">
                   <SecondaryButton compact onClick={handleSort} toggle active={isSorted}>

@@ -53,6 +53,7 @@ export const TEST = gql`
         }
         pageInfo {
           endCursor
+          startCursor
         }
       }
     }

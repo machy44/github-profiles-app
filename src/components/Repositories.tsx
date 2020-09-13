@@ -14,7 +14,7 @@ const ItemsGroup = styled(Item.Group)({
   margin: '0 !important',
 });
 
-const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore, lastItemCursor }) => {
+const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore, firstItemCursor }) => {
   return (
     <ItemsGroup relaxed>
       {repositoriesData.map(({ cursor, node }) => {
@@ -32,6 +32,7 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore
         );
       })}
       <SecondaryButton
+        disabled={!firstItemCursor}
         compact
         fluid
         size="mini"
@@ -39,7 +40,8 @@ const Repositories: React.FC<RepositoriesProps> = ({ repositoriesData, fetchMore
           // https://www.apollographql.com/docs/react/data/pagination/#using-fetchmore
           fetchMore({
             variables: {
-              before: lastItemCursor,
+              before: firstItemCursor,
+              number_of_repos: 5,
             },
             updateQuery: (prevRes, { fetchMoreResult }) => {
               if (!fetchMoreResult) return prevRes;
