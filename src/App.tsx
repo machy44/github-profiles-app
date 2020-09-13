@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
 import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import { Icon } from 'semantic-ui-react';
-import { GET_ACC_REPOSITORIES, GET_ACCOUNT } from './api/queries';
-import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from './api/types';
+import { useFetch } from './hooks/useFetch';
 import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
 import { Layout } from './theme';
@@ -24,27 +22,17 @@ export const SortRepositoriesWrapper = styled(Box)({
 });
 
 const App = () => {
-  // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
-  const [account, setAccount] = useState<string>('');
-  const [isSorted, setIsSorted] = useState<boolean>(false);
-
-  const { loading: loadingRepository, data: repositoriesResponse, fetchMore } = useQuery<
-    RepositoriesData,
-    RepositoriesVars
-  >(GET_ACC_REPOSITORIES, {
-    variables: {
-      number_of_repos: 10,
-      username: account,
-    },
-  });
-
-  const { loading: loadingAccount, data: accountResponse } = useQuery<Account, AccountVars>(GET_ACCOUNT, {
-    variables: {
-      username: account,
-    },
-  });
-
-  const handleSort = () => setIsSorted((value: Boolean) => !value);
+  const {
+    setAccount,
+    isSorted,
+    setIsSorted,
+    loadingRepository,
+    repositoriesResponse,
+    loadingAccount,
+    accountResponse,
+    fetchMore,
+  } = useFetch();
+  const handleSort = () => setIsSorted((value: boolean) => !value);
 
   // dont mutate original array
   const repositories = [...(repositoriesResponse?.user.repositories.edges || [])];
