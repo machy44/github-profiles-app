@@ -3,7 +3,7 @@ import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import { Icon, Message } from 'semantic-ui-react';
-import { useFetch } from './hooks/useFetch';
+import { useFetch, useViewport } from './hooks';
 import { sortByName } from './utils';
 import { Loader, SecondaryButton } from './common';
 import { Layout } from './theme';
@@ -21,6 +21,8 @@ export const SortRepositoriesWrapper = styled(Box)({
   },
 });
 
+const SMALL_SCREEN = 768;
+
 const App = () => {
   const {
     setAccount,
@@ -33,6 +35,7 @@ const App = () => {
     fetchMore,
     accError,
   } = useFetch();
+  const { width } = useViewport();
 
   const handleSort = () => setIsSorted((value: boolean) => !value);
 
@@ -41,13 +44,19 @@ const App = () => {
 
   isSorted && repositories.sort(sortByName);
 
-  console.log('accError', accError?.message);
+  console.log('width', width);
 
   return (
     <>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme}>
-        <Flex flexDirection="column" p={['xs', 'sm', 'md', 'lg']} mx="auto" alignItems="center">
+        <Flex
+          flexDirection="column"
+          py={['sm', 'md', 'lg']}
+          px={['xs', 'sm', 'md', 'lg']}
+          mx="auto"
+          alignItems="center"
+        >
           <Loader active={waitingForResponse} />
           <Text fontSize={[3, 4]} color="white" fontFamily="inherit" textAlign="center" letterSpacing={[1, 2]}>
             Github profiles app
@@ -58,7 +67,11 @@ const App = () => {
               <Message.Header>{accError.message}</Message.Header>
             </Message>
           )}
-          <Grid gridTemplateColumns="auto 1fr auto" gridGap={['sm', 'md', 'lg']} mt={['sm', 'md', 'lg']}>
+          <Grid
+            gridTemplateColumns={width <= SMALL_SCREEN ? 'auto' : 'auto 1fr auto'}
+            gridGap={['sm', 'md', 'lg']}
+            mt={['sm', 'md', 'lg']}
+          >
             {accountResponse ? (
               <Box justifySelf="start">
                 <Profile profileData={accountResponse.user} />

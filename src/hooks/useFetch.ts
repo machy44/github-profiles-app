@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ACC_REPOSITORIES, GET_ACCOUNT } from '../api/queries';
 import { Account, AccountVars, RepositoriesData, RepositoriesVars, Node } from '../api/types';
 
-export const useFetch = () => {
+const useFetch = () => {
   // const { loading: loadingUser, data: userData } = useQuery<User>(CURRENT_USER);
   const [account, setAccount] = useState<string>('');
   const [isSorted, setIsSorted] = useState<boolean>(false);
@@ -41,3 +41,5 @@ export const useFetch = () => {
     accError,
   };
 };
+
+export default useFetch;

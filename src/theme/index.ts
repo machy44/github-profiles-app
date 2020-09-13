@@ -41,7 +41,7 @@ export const theme: Theme = {
   },
   breakpoints: ['40em', '52em', '64em'],
   space: {
-    xs: 4,
+    xs: 0,
     sm: 8,
     md: 16,
     lg: 32,
